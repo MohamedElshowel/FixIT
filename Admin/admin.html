@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Property Manager Dashboard</title>
+
+    <link rel="icon" href="">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/font-awesome-4.7.0/css/font-awesome.min.css">
+
+
+    <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2017.2.621/styles/kendo.common.min.css" />
+    <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2017.2.621/styles/kendo.default.min.css" />
+    <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2017.2.621/styles/kendo.default.mobile.min.css" />
+    <link rel="stylesheet" href="./css/styles.css">
+
+    <script src="http://kendo.cdn.telerik.com/2017.2.621/js/jquery.min.js"></script>
+    <script src="http://kendo.cdn.telerik.com/2017.2.621/js/kendo.all.min.js"></script>
+    <script src="./modules/three.js"></script>
+    <script src="./modules/loaders/OBJLoader.js"></script>
+
+    <link rel="stylesheet" href="https://js.arcgis.com/3.23/esri/css/esri.css">
+    <script src="https://js.arcgis.com/3.23/"></script>
+
+</head>
+
+<body>
+    <header>
+        <div id="title">
+            <div id="logo">
+                <img src="./images/app-icon-reverse.png"/>
+            </div>
+            <div id="company-name"><a href="#">REPAIR.it</a></div>
+        </div>
+        <div id="user-info">
+            <div id="user-photo">
+                <i class="fa fa-user-circle"></i>
+            </div>
+            <div id="username">Administrator
+                <div id="user-controls">
+                    <a href="#" id="settings">Settings</a> |
+                    <a href="#" id="logout">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <aside class="lists">
+
+        <div id="requests">
+            <div class="list-header">
+                <span>
+                    <i class="fa fa-bell-o"></i> Reparing Requests
+                </span>
+
+                <div class="list-actions">
+                    <div id="plan-btn">
+                        <i class="fa fa-map-o"></i>
+                    </div>
+                    <div id="zoom-btn">
+                        <i class="fa fa-search-plus"></i>
+                    </div>
+                    <div id="refresh-btn">
+                        <i class="fa fa-refresh"></i>
+                    </div>
+                </div>
+            </div>
+            <div id="requestsList">
+                <!-- Kendo - Request List -->
+            </div>
+        </div>
+        <div id="plan-list">
+            <div class="list-header">
+                <span>
+                    <i class="fa fa-map-o"></i> Plan
+                </span>
+
+                <div class="list-actions">
+                    <div id="back-btn">
+                        <i class="fa fa-arrow-left"></i>
+                    </div>
+                    <div id="play-btn">
+                        <i class="fa fa-play"></i>
+                    </div>
+                </div>
+            </div>
+            <div id="planList">
+                <!-- Kendo - Plan List -->
+            </div>
+        </div>
+    </aside>
+
+    <section>
+        <div id="map"></div>
+    </section>
+    <div class="clear"></div>
+    <footer>
+        <div id="companyfooer">
+            <p>REPAIR.it &copy; 2019 | www.REPAIR.it</p>
+        </div>
+    </footer>
+
+
+    <script type="text/x-kendo-template" id="reqTemplate">
+        <div class="client-request">
+            <p id="client-name"><b>#:type#</b></p>
+            <p id="requests-count"><b>#:quantity#</b><p>
+            <p class="address">#:address#</p>
+            <div class="clear"></div>
+        </div>
+    </script>
+
+    <script type="text/x-kendo-template" id="planTemplate">
+        <div id="delivery-plan">
+            #if(!attributes.client_name){#
+                <div class="shop">
+                    <div id="shop-icon">
+                        <i class="fa fa-home"></i>
+                    </div>
+                    <div>Shop</div>
+                    <div class="clear"></div>
+                </div>
+            #}else{#
+                <div class="client">
+                <div id="request-number">#:attributes.number#</div>
+                <div>#:attributes.client_name#</div>
+                <div class="clear"></div>
+            #}#
+        </div>
+    </script>
+    <script>
+$(function () {
+
+            require(["esri/map"], function() {
+                // Constructing the map pointing to the location of the shop.
+                var map = new Map("map", {
+                    center: [-118.132, 34.169],
+                    zoom: 15,
+                    basemap: "streets"
+                });
+});
+
+    });
+    </script>
+    <script src="./modules/app.js"></script>
+</body>
+
+</html>
