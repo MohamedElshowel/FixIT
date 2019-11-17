@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet, Button, View, AsyncStorage } from 'react-native'
+import Graphics from '../components/Graphics'
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -8,9 +9,10 @@ export default class HomeScreen extends React.Component {
 
   render () {
     return (
-      <View>
-        <Button title='Show me more of the app' onPress={this._showMoreApp} />
-        <Button title='Actually, sign me out :)' onPress={this._signOutAsync} />
+      <View style={styles.container}>
+        <Graphics />
+        {/* <Button title='Show me more of the app' onPress={this._showMoreApp} />
+        <Button title='Actually, sign me out :)' onPress={this._signOutAsync} /> */}
       </View>
     )
   }
@@ -30,6 +32,6 @@ export default class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff'
+    // backgroundColor: '#fff'
   }
 })
